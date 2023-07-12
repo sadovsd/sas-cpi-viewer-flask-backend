@@ -1,0 +1,19 @@
+%macro create_polynomial(degree=);
+   /* Generate x values */
+   data x_values;
+      do x = -10 to 10 by 0.1;
+         output;
+      end;
+   run;
+
+   /* Generate y values based on polynomial degree */
+   data y_values;
+      set x_values;
+      y = 0;
+      do i = 1 to &degree.;
+         y = y + (x ** i);
+      end;
+      output;
+   run;
+
+%mend;
