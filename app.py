@@ -88,7 +88,7 @@ def make_results():
     macro = macro_code + '\n' + macro_call
 
     # debug this hoe
-    authenticate_sas()
+    # authenticate_sas()
 
     # get the resulting pandas dataframe
     cpi_df = make_sas_data(macro)
