@@ -9,9 +9,11 @@ matplotlib.use('Agg')  # Set the backend to Agg
 import matplotlib.pyplot as plt
 import io
 import base64
+import logging
 
 
 app = Flask(__name__)
+
 
 CORS(app)
 
@@ -44,6 +46,19 @@ def make_cpi_graph(dataframe):
 
     return base64_image
 
+# saspy authentication wasn't working azure web app deployemnt (.authinfo issue), so I had to debug by logging
+def authenticate_sas():
+    # Configure logging
+    logging.basicConfig(level=logging.INFO)
+    try:
+        # Initialize SAS session
+        sas_session = saspy.SASsession()
+
+        # Print the SAS configuration used
+        logging.info(f"SAS Configuration: {sas_session.sascfg}")
+    except Exception as e:
+        logging.error(f"YOOOOOOOOOOOOOOOOOOOOO mr white!!!!!!!!!!!!!! Error during SAS authentication: {str(e)}")
+
 @app.route('/')
 def use_template():
     return render_template("index.html")
@@ -69,6 +84,9 @@ def make_results():
 
     # concatenate the existing macro and macro_call
     macro = macro_code + '\n' + macro_call
+
+    # debug this hoe
+    authenticate_sas()
 
     # get the resulting pandas dataframe
     cpi_df = make_sas_data(macro)
