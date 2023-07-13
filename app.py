@@ -78,7 +78,7 @@ def make_results():
     #     raise Exception('Intentional backend error')
 
     # create a macro call based on the user input
-    macro_call = f"%create_polynomial(degree={polynomial_degree})"
+    macro_call = f"%create_polynomial(degree={polynomial_degree});"
 
     # read the contents of the file to get the existing macro
     with open('macro.txt', 'r') as f:
@@ -105,6 +105,8 @@ def make_results():
     # return response
 
 if __name__ == '__main__':
+    # app.run(debug=True, host='0.0.0.0', port='5000')
     app.run(debug=True)
+
 
 
