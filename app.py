@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 import logging
+import pandas
 
 
 app = Flask(__name__)
@@ -19,7 +20,7 @@ CORS(app)
 
 # set up sas session, feed the macro code in it, get a pandas dataframe of the resulting data
 def make_sas_data(macro):
-    sas_session = saspy.SASsession()
+    sas_session = saspy.SASsession(cfgfile='root/.authinfo')
     gpt_macro_submit = sas_session.submit("""                 
         %s
     """ % format(macro))
@@ -49,10 +50,11 @@ def make_cpi_graph(dataframe):
 # saspy authentication wasn't working azure web app deployemnt (.authinfo issue), so I had to debug by logging
 def authenticate_sas():
     # Configure logging
-    logging.basicConfig(level=logging.INFO)
+    # logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.DEBUG)
     try:
         # Initialize SAS session
-        sas_session = saspy.SASsession()
+        sas_session = saspy.SASsession(cfgfile='root/.authinfo')
 
         # Print the SAS configuration used
         logging.info(f"SAS Configuration: {sas_session.sascfg}")
