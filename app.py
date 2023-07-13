@@ -57,9 +57,9 @@ def authenticate_sas():
         sas_session = saspy.SASsession()
 
         # Print the SAS configuration used
-        logging.info(f"SAS Configuration: {sas_session.sascfg}")
+        logging.info(f"DEBBUGGING.11SAS Configuration: {sas_session.sascfg}")
     except Exception as e:
-        logging.error(f"DEBBUGGINGGG.. Error during SAS authentication: {str(e)}")
+        logging.error(f"DEBBUGGINGGG..22 Error during SAS authentication: {str(e)}")
 
 @app.route('/')
 def use_template():
