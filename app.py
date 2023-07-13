@@ -20,7 +20,7 @@ CORS(app)
 
 # set up sas session, feed the macro code in it, get a pandas dataframe of the resulting data
 def make_sas_data(macro):
-    sas_session = saspy.SASsession(cfgfile='root/.authinfo')
+    sas_session = saspy.SASsession()
     gpt_macro_submit = sas_session.submit("""                 
         %s
     """ % format(macro))
@@ -54,12 +54,12 @@ def authenticate_sas():
     logging.basicConfig(level=logging.DEBUG)
     try:
         # Initialize SAS session
-        sas_session = saspy.SASsession(cfgfile='root/.authinfo')
+        sas_session = saspy.SASsession()
 
         # Print the SAS configuration used
         logging.info(f"SAS Configuration: {sas_session.sascfg}")
     except Exception as e:
-        logging.error(f"YOOOOOOOOOOOOOOOOOOOOO mr white!!!!!!!!!!!!!! Error during SAS authentication: {str(e)}")
+        logging.error(f"DEBBUGGINGGG.. Error during SAS authentication: {str(e)}")
 
 @app.route('/')
 def use_template():
