@@ -1,4 +1,4 @@
-# SAS_config_names=['oda']
+SAS_config_names=['oda']
 
 oda = {'java' : '/usr/bin/java',
 #My SAS onDemand 'US Home Region 2'
