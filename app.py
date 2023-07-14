@@ -70,8 +70,8 @@ def use_template():
 # obtain user input with request.form
 def make_results():
     # polynomial_degree = request.form['1'] ---> this one worked for a while then it randomely stopped tf??
-    # polynomial_degree = request.args.get('1', 'default_value') ---> works with postman, but not react form, since postman uses json or something
-    polynomial_degree = request.form.get('1', 'default_value')
+    polynomial_degree = request.args.get('1', 'default_value') #---> works with postman, but not react form, since postman uses json or something
+    # polynomial_degree = request.form.get('1', 'default_value')
 
     # intentionally throw a 500 internal server error, for testing purposes
     # if polynomial_degree == 'error':
